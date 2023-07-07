@@ -4,7 +4,7 @@ using Tools.Singleton;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace GlobalScripts
+namespace Touch.CustomGravity
 {
     public class GlobalGravity : Singleton<GlobalGravity>
     {

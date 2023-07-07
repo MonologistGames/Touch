@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using System.Diagnostics;
 using UnityEngine;
-using GlobalScripts;
 using UnityEngine.Serialization;
+using Touch.CustomGravity;
 
-namespace MainLogicalScripts
+namespace Touch.PlayerController
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(PlayerInputProcessor))]

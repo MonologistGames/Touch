@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MainLogicalScripts
+namespace Touch.PlayerController
 {
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerInputProcessor : MonoBehaviour
