@@ -1,5 +1,5 @@
 {
-    "name": "InputInfomation",
+    "name": "InputActions",
     "maps": [
         {
             "name": "Player",
@@ -13,6 +13,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "GravityChange",
+                    "type": "Value",
+                    "id": "464b51db-b8e2-4583-bd73-5a9dae8372c0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Float",
+                    "type": "Button",
+                    "id": "7b9f4814-3a49-4621-ac08-5c1b8095063c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -147,122 +165,182 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Gravity",
-            "id": "d6bb54b8-0819-4858-ac03-fa4f69d503c3",
-            "actions": [
-                {
-                    "name": "Direction",
-                    "type": "Value",
-                    "id": "313c2a02-ca1a-4d2a-90b2-2448af85f950",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "WASD",
-                    "id": "a31febb9-eb07-4004-a159-cc96189ba6f5",
+                    "id": "e06aee11-80c2-435e-8c0b-9995f2b25c87",
                     "path": "Dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "9684f78e-dd3e-444a-af4a-f1fd97edfe7f",
+                    "id": "9f339b9c-a62b-4b57-90ab-921a57aede6b",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "up",
-                    "id": "af165773-77d9-4d26-8829-d71900ac54d4",
+                    "id": "ebde835f-8f73-4881-9b27-5d10cf533c22",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "c033b598-603b-43fb-bd6d-6fdb84b8a1e9",
+                    "id": "5795730b-fc19-44d3-9ba0-032949720d08",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "d9049d99-9f18-467b-917a-1d95516db19d",
+                    "id": "a078d0cc-c42d-415f-9d19-7e69febeb162",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "34482c41-9701-4147-88bc-8472bdf2a970",
+                    "id": "ffee293f-d985-43dd-a437-c424a2da93f8",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "d7c830ea-2571-45cf-bfd6-aef334e08e09",
+                    "id": "c920cf2e-fdf8-47e9-99c4-efc37a14b165",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "149450a3-d849-45c0-943b-dd38d767916b",
+                    "id": "8002251b-172a-4fa1-a6da-f5fc5da99079",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "0ec4197f-3610-470c-b6a5-4b0a526fb6c3",
+                    "id": "caae7a6a-0c79-4d90-a06f-221efa3e1392",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Direction",
+                    "action": "GravityChange",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "D-Pad",
+                    "id": "ee407855-cf90-4428-bbed-b27430be034b",
+                    "path": "Dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GravityChange",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "11da6b33-209d-46d3-8268-869e168cb8dc",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GravityChange",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "c7817757-7b79-42a8-8a96-c61da6b7660b",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GravityChange",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "38541742-e696-4d18-8a8c-560016e410df",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GravityChange",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "0ba740a8-0cb3-4551-a3ff-8e3a33df4d2d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "GravityChange",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ff31cc0c-29ea-47ba-931b-eb6e46146f5c",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Float",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e16e955a-5948-4ce5-8e72-7919621cc925",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Float",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
