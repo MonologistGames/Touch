@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Touch.CustomGravity;
@@ -11,7 +10,7 @@ namespace Touch.PlayerController
     [RequireComponent(typeof(PlayerInputProcessor))]
     public class PlayerController : MonoBehaviour
     {
-        #region 枚举
+        #region ö��
         /// <summary>
         /// 玩家当前的状态
         /// </summary>
@@ -23,10 +22,11 @@ namespace Touch.PlayerController
         }
 
         public CharacterState State = CharacterState.Normal;
+        private Animator _animator;
 
         [Header("Gravity Change")]
         [Tooltip("当更改状态后角色残留速度")]
-        public float VelocityRemainAfterChange = 0.5f;
+        public float VelocityRemainAfterChange = 0.5f
         [Tooltip("更改重力的 CD")]
         public float ChangeGravityColdTime = 0.5f;
         [Tooltip("最大速度")]
@@ -38,7 +38,6 @@ namespace Touch.PlayerController
         [Tooltip("重力系数的系数")]
         public float GravityFactorFactor = 1f;
 
-        public float SlowTimeLapse = 0.2f;
         public float SlowTimeScale = 0.2f;
 
         [Header("Floating")]
@@ -68,9 +67,13 @@ namespace Touch.PlayerController
         private Rigidbody _rigidbody;
         private Material _material;
         private Transform _transform;
+
+        // 动画状态机
+        private static readonly int Turn = Animator.StringToHash("Turn");
+        private static readonly int Slow = Animator.StringToHash("Slow");
         #endregion
 
-        #region 属性
+        #region 私有属性
         /// <summary>
         /// 当前的悬浮能量
         /// </summary>
@@ -92,6 +95,9 @@ namespace Touch.PlayerController
         /// 是否能悬浮
         /// </summary>
         private bool CanFloat => !_isExhausted && _currentFloatingEnergy > 0f;
+        #endregion
+
+        #region 共有属性
         /// <summary>
         /// 重生点
         /// </summary>
@@ -107,15 +113,13 @@ namespace Touch.PlayerController
         {
             _rigidbody = GetComponent<Rigidbody>();
             _transform = GetComponent<Transform>();
-            CheckpointComponent.CheckpointEvent.AddListener((position) => { Respawn = position; }); // 添加检查点的回调函数 - 更新重生点
+            CheckpointComponent.CheckpointEvent.AddListener((position) => { Respawn = position; }); // ��Ӽ���Ļص����� - ����������
         }
 
         private void Start()
         {
             _currentFloatingEnergy = FloatingEnergy;
             GlobalGravity.Instance.OnGravityChanged += ChangeGravityDirection;
-            _material = GetComponent<MeshRenderer>().material;
-
             /* 注册所需保存的状态 */
             StateManager.StateManager.Instance.RegisterStateManager(() => Respawn, (value) => _transform.position = value); // 位置（根据重生点保存）
         }
@@ -137,14 +141,10 @@ namespace Touch.PlayerController
                 case CharacterState.Normal:
                     if (!CanChangeGravity)
                         _currentChangeGravityColdTime -= Time.unscaledDeltaTime;
-                    else
-                        _material.color = ChangeReadyColor;
                     if (InputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
-
-                        // TODO: add floating effect
-                        _material.color = FloatingColor;
+                        _animator.SetBool(Slow, true);
                     }
                     else
                     {
@@ -161,14 +161,14 @@ namespace Touch.PlayerController
                     {
                         _isExhausted = true;
                         InputProcessor.IsFloating = false;
+                        _animator.SetBool(Slow, false);
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
 
                     if (!InputProcessor.IsFloating)
                     {
+                        _animator.SetBool(Slow, false);
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
                     break;
             }
@@ -214,7 +214,7 @@ namespace Touch.PlayerController
         /// <param name="other"></param>
         private void OnTriggerEnter(Collider other)
         {
-            // 死亡判判定
+            // 死亡判定
             if (other.CompareTag("Default"))
                 Die();
         }
@@ -224,7 +224,7 @@ namespace Touch.PlayerController
         private void UpdateVelocity(float velocityLimit)
         {
             var temp = _rigidbody.velocity;
-            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedDeltaTime);
+            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedUnscaledDeltaTime);
             temp = temp.normalized *
                    Mathf.Min(temp.magnitude, velocityLimit);
             _rigidbody.velocity = temp;
@@ -239,7 +239,7 @@ namespace Touch.PlayerController
 
         private void ChangeGravityDirection(Vector3 gravity)
         {
-            StartCoroutine(GravityChangeEffect());
+            _animator.SetTrigger(Turn);
         }
 
         #region Gravity Change Effect
@@ -250,9 +250,8 @@ namespace Touch.PlayerController
 
         public void BeginChange()
         {
-            _material.color = GravityChangeColor;
-            _rigidbody.velocity *= VelocityRemainAfterChange;
-
+            _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
+            
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
 
@@ -265,8 +264,6 @@ namespace Touch.PlayerController
             Time.fixedDeltaTime = 0.02f;
 
             State = CharacterState.Normal;
-
-            _material.color = Color.white;
         }
 
         private IEnumerator GravityChangeEffect()

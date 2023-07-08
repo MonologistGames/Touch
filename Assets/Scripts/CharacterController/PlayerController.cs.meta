@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2048d789597ff4d588d2f4cef6d9e3d3
+=======
+guid: cbf04b6970b21494a9b93ae939f75276
+>>>>>>> feature/white_box
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
