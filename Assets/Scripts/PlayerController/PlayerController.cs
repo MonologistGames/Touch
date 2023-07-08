@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Touch.CustomGravity;
+using Unity.Mathematics;
 
 namespace Touch.PlayerController
 {
@@ -169,7 +170,7 @@ namespace Touch.PlayerController
         private void UpdateRotation()
         {
             if (_rigidbody.velocity.sqrMagnitude > 0.5f)
-                transform.up = _rigidbody.velocity.normalized;
+                SetRotationToVelocity();
         }
 
 
@@ -182,7 +183,11 @@ namespace Touch.PlayerController
 
         public void SetRotationToVelocity()
         {
-            transform.up = _rigidbody.velocity.normalized;
+            var dotResult = Vector3.Dot(_rigidbody.velocity.normalized,Vector3.right);
+            var angle = Mathf.Acos(dotResult);
+            if (_rigidbody.velocity.y < 0) angle = -angle;
+            transform.rotation =
+                Quaternion.AngleAxis(angle * Mathf.Rad2Deg - 90f, Vector3.forward);
         }
 
         public void BeginChange()
