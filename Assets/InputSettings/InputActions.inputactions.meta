@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: fac647a451b8c461ea0dbc67da7c2e4e
+=======
+guid: 1d485256e68273f4598f09a2bc312fa9
+>>>>>>> feature/white_box
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
