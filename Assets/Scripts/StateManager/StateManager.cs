@@ -8,8 +8,8 @@ namespace Touch.StateManager
     public class StateManager : Singleton<StateManager>
     {
         private readonly List<object> _savedStates = new(); // 最近一次保存的状态
-        private event Action<int> SaverManager; // 保存管理器，在保存存档时调用所有状态保存函数
-        private event Action<int> ReaderManager; // 读取管理器，在读取存档时调用所有状态读取函数
+        private List<Action<int>> SaverManager = new(); // 保存管理器，在保存存档时调用所有状态保存函数
+        private List<Action<int>> ReaderManager = new(); // 读取管理器，在读取存档时调用所有状态读取函数
 
         /// <summary>
         /// 注册需要存档的状态
@@ -20,14 +20,14 @@ namespace Touch.StateManager
         public void RegisterStateManager<T>(Func<T> reader, Action<T> saver)
         {
             _savedStates.Add(reader());
-            ReaderManager += (idx) =>
+            ReaderManager.Add((idx) =>
             {
                 saver((T)_savedStates[idx]);
-            };
-            SaverManager += (idx) =>
+            });
+            SaverManager.Add((idx) =>
             {
                 _savedStates[idx] = reader();
-            };
+            });
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Touch.StateManager
         public void ReadState()
         {
             for (int i = 0; i < _savedStates.Count; i++)
-                ReaderManager?.Invoke(i);
+                ReaderManager[i]?.Invoke(i);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Touch.StateManager
         public void SaveState()
         {
             for (int i = 0; i < _savedStates.Count; i++)
-                SaverManager?.Invoke(i);
+                SaverManager[i]?.Invoke(i);
         }
     }
 }
