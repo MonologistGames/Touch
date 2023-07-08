@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace Touch.Machines.ObstacleWithSwitch
 {
-    public class Switch : MonoBehaviour
+    public class SwitchController : MonoBehaviour
     {
         private ObstacleWithSwitchController _obstacleWithSwitchController;
         private Transform _obstacleTransform;
