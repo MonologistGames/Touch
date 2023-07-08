@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Touch.CustomGravity;
@@ -29,9 +28,6 @@ namespace Touch.PlayerController
 
         [FormerlySerializedAs("VelocityLimited")] public float VelocityLimit = 6f;
         [Header("Gravity Change")] [Min(0f)] public float GravityFactorFactor = 1f;
-
-        public float SlowTimeLapse = 0.2f;
-        private float _currentSlowTimeLapse;
         public float SlowTimeScale = 0.2f;
         
         [Header("Floating")]
@@ -55,12 +51,6 @@ namespace Touch.PlayerController
         private bool CanFloat => !_isExhausted && _currentFloatingEnergy > 0f;
         
         private Rigidbody _rigidbody;
-
-        private Material _material;
-
-        public Color GravityChangeColor;
-        public Color ChangeReadyColor;
-        public Color FloatingColor;
 
         public PlayerInputProcessor InputProcessor;
         private static readonly int Turn = Animator.StringToHash("Turn");
@@ -116,13 +106,11 @@ namespace Touch.PlayerController
                         _isExhausted = true;
                         InputProcessor.IsFloating = false;
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
 
                     if (!InputProcessor.IsFloating)
                     {
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
                     break;
             }
@@ -157,7 +145,7 @@ namespace Touch.PlayerController
         private void UpdateVelocity(float velocityLimit)
         {
             var temp = _rigidbody.velocity;
-            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedDeltaTime);
+            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedUnscaledDeltaTime);
             temp = temp.normalized *
                    Mathf.Min(temp.magnitude, velocityLimit);
             _rigidbody.velocity = temp;
@@ -199,16 +187,8 @@ namespace Touch.PlayerController
         public void SetRotationToVelocity()
         {
             transform.up = _rigidbody.velocity.normalized;
-            Debug.Log(_rigidbody.velocity);
         }
 
         #endregion
-
-        private IEnumerator GravityChangeEffect()
-        {
-            BeginChange();
-            yield return new WaitForSecondsRealtime(SlowTimeLapse);
-            EndChange();
-        }
     }
 }
