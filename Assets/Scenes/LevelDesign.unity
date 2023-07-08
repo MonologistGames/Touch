@@ -557,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367596299}
-  - component: {fileID: 367596298}
+  - component: {fileID: 367596300}
   m_Layer: 0
   m_Name: GlobalGravity
   m_TagString: Untagged
@@ -565,19 +565,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &367596298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367596297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 850975ae879d546999197c0f609b1b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GravityFactor: 9.8
 --- !u!4 &367596299
 Transform:
   m_ObjectHideFlags: 0
@@ -593,6 +580,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &367596300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367596297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9710f58e4a626423c8b6e3db7c55d1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GravityFactor: 9.8
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,9 +724,9 @@ GameObject:
   - component: {fileID: 484553219}
   - component: {fileID: 484553218}
   - component: {fileID: 484553217}
-  - component: {fileID: 484553221}
   - component: {fileID: 484553222}
   - component: {fileID: 484553223}
+  - component: {fileID: 484553224}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -847,30 +847,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484553215}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &484553221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484553215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b07805924f074ccc8ffd482c3e6cfb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  State: 2
-  VelocityRemainAfterChange: 0.3
-  ChangeGravityColdTime: 1.5
-  VelocityLimit: 5
-  GravityFactorFactor: 1
-  SlowTimeLapse: 0.5
-  SlowTimeScale: 0.2
-  FloatingVelocityLimit: 1
-  GravityChangeColor: {r: 1, g: 0.3726415, b: 0.3726415, a: 1}
-  ChangeReadyColor: {r: 0.3066038, g: 0.8699624, b: 1, a: 1}
-  FloatingColor: {r: 0.25, g: 1, b: 0.28951216, a: 1}
-  InputProcessor: {fileID: 484553223}
 --- !u!114 &484553222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2b3dfe45a286c499ca585508c790ee9e,
+  m_Actions: {fileID: -944628639613478452, guid: fac647a451b8c461ea0dbc67da7c2e4e,
     type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -968,6 +944,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravityDirection: {x: 0, y: 0}
   IsFloating: 0
+--- !u!114 &484553224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484553215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2048d789597ff4d588d2f4cef6d9e3d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 2
+  VelocityRemainAfterChange: 0.5
+  ChangeGravityColdTime: 0.5
+  VelocityLimit: 6
+  GravityFactorFactor: 1
+  SlowTimeLapse: 0.2
+  SlowTimeScale: 0.2
+  FloatingVelocityLimit: 1
+  FloatingEnergy: 3
+  FloatingEnergyRecoverRate: 2
+  GravityChangeColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
+  ChangeReadyColor: {r: 0.2216981, g: 0.8227649, b: 1, a: 1}
+  FloatingColor: {r: 0.21679364, g: 1, b: 0.023584902, a: 0.98039216}
+  InputProcessor: {fileID: 484553223}
 --- !u!1 &634324943
 GameObject:
   m_ObjectHideFlags: 3
