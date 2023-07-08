@@ -2282,7 +2282,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614724}
   m_ExposedName: Offset
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -2362,7 +2362,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614826}
   m_ExposedName: Player
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:

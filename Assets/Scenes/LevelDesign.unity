@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38348707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -253,7 +253,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: -0.09804729, y: 4.8204727, z: -5.6490154}
+      - m_Value: {x: -0.09804729, y: 4.8204727, z: -5.3990154}
         m_Name: SpawnPos
         m_Overridden: 1
       - m_Value: {x: 0, y: 0, z: 0}
@@ -377,7 +377,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.125, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1224,7 +1224,6 @@ MonoBehaviour:
   ChangeGravityColdTime: 0.5
   VelocityLimit: 6
   GravityFactorFactor: 1
-  SlowTimeLapse: 0.2
   SlowTimeScale: 0.2
   FloatingVelocityLimit: 1
   FloatingEnergy: 3

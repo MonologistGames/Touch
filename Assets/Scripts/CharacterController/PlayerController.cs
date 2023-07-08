@@ -54,6 +54,7 @@ namespace Touch.PlayerController
 
         public PlayerInputProcessor InputProcessor;
         private static readonly int Turn = Animator.StringToHash("Turn");
+        private static readonly int Slow = Animator.StringToHash("Slow");
 
         private void Awake()
         {
@@ -87,8 +88,7 @@ namespace Touch.PlayerController
                     if (InputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
-                        
-                        // TODO: add floating effect
+                        _animator.SetBool(Slow, true);
                     }
                     else
                     {
@@ -105,11 +105,13 @@ namespace Touch.PlayerController
                     {
                         _isExhausted = true;
                         InputProcessor.IsFloating = false;
+                        _animator.SetBool(Slow, false);
                         State = CharacterState.Normal;
                     }
 
                     if (!InputProcessor.IsFloating)
                     {
+                        _animator.SetBool(Slow, false);
                         State = CharacterState.Normal;
                     }
                     break;
@@ -167,7 +169,6 @@ namespace Touch.PlayerController
 
         public void BeginChange()
         {
-            Debug.Log(_rigidbody.velocity);
             _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
             
             Time.timeScale = SlowTimeScale;
