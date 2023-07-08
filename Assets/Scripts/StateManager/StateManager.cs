@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using Tools.Singleton;
 using UnityEngine;
 
-namespace GlobalScripts
+namespace Touch.StateManager
 {
     public class StateManager : Singleton<StateManager>
     {
-        private readonly List<object> _savedStates = new(); // ×î½üÒ»´Î±£´æµÄ×´Ì¬
-        private event Action<int> SaverManager; // ±£´æ¹ÜÀíÆ÷£¬ÔÚ±£´æ´æµµÊ±µ÷ÓÃËùÓĞ×´Ì¬±£´æº¯Êı
-        private event Action<int> ReaderManager; // ¶ÁÈ¡¹ÜÀíÆ÷£¬ÔÚ¶ÁÈ¡´æµµÊ±µ÷ÓÃËùÓĞ×´Ì¬¶ÁÈ¡º¯Êı
+        private readonly List<object> _savedStates = new(); // æœ€è¿‘ä¸€æ¬¡ä¿å­˜çš„çŠ¶æ€
+        private event Action<int> SaverManager; // ä¿å­˜ç®¡ç†å™¨ï¼Œåœ¨ä¿å­˜å­˜æ¡£æ—¶è°ƒç”¨æ‰€æœ‰çŠ¶æ€ä¿å­˜å‡½æ•°
+        private event Action<int> ReaderManager; // è¯»å–ç®¡ç†å™¨ï¼Œåœ¨è¯»å–å­˜æ¡£æ—¶è°ƒç”¨æ‰€æœ‰çŠ¶æ€è¯»å–å‡½æ•°
 
         /// <summary>
-        /// ×¢²áĞèÒª´æµµµÄ×´Ì¬
+        /// æ³¨å†Œéœ€è¦å­˜æ¡£çš„çŠ¶æ€
         /// </summary>
-        /// <typeparam name="T">×´Ì¬ÀàĞÍ</typeparam>
-        /// <param name="reader">×´Ì¬¶ÁÈ¡º¯Êı</param>
-        /// <param name="saver">×´Ì¬±£´æº¯Êı</param>
+        /// <typeparam name="T">çŠ¶æ€ç±»å‹</typeparam>
+        /// <param name="reader">çŠ¶æ€è¯»å–å‡½æ•°</param>
+        /// <param name="saver">çŠ¶æ€ä¿å­˜å‡½æ•°</param>
         public void RegisterStateManager<T>(Func<T> reader, Action<T> saver)
         {
             _savedStates.Add(reader());
@@ -31,7 +31,7 @@ namespace GlobalScripts
         }
 
         /// <summary>
-        /// ¶ÁÈ¡ÉÏÒ»´Î±£´æµÄËùÓĞ×´Ì¬
+        /// è¯»å–ä¸Šä¸€æ¬¡ä¿å­˜çš„æ‰€æœ‰çŠ¶æ€
         /// </summary>
         public void ReadState()
         {
@@ -40,7 +40,7 @@ namespace GlobalScripts
         }
 
         /// <summary>
-        /// ±£´æËùÓĞ×¢²áµÄ×´Ì¬
+        /// ä¿å­˜æ‰€æœ‰æ³¨å†Œçš„çŠ¶æ€
         /// </summary>
         public void SaveState()
         {
