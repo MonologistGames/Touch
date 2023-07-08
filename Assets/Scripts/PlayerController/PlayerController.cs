@@ -54,7 +54,7 @@ namespace Touch.PlayerController
             {
                 _currentFloatingEnergy = value;
                 _currentFloatingEnergy = Mathf.Clamp(_currentFloatingEnergy, 0, FloatingEnergy);
-                OnFloatingEnergyChanged?.Invoke(_currentFloatingEnergy);
+                OnFloatingEnergyChanged?.Invoke(_currentFloatingEnergy, _isExhausted);
             }
         }
         
@@ -67,7 +67,7 @@ namespace Touch.PlayerController
 
         #endregion
 
-        public event Action<float> OnFloatingEnergyChanged;
+        public event Action<float, bool> OnFloatingEnergyChanged;
 
         private void Start()
         {
