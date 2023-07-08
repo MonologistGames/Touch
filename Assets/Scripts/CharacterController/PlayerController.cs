@@ -56,12 +56,6 @@ namespace Touch.PlayerController
         
         private Rigidbody _rigidbody;
 
-        private Material _material;
-
-        public Color GravityChangeColor;
-        public Color ChangeReadyColor;
-        public Color FloatingColor;
-
         public PlayerInputProcessor InputProcessor;
         private static readonly int Turn = Animator.StringToHash("Turn");
 
@@ -116,13 +110,11 @@ namespace Touch.PlayerController
                         _isExhausted = true;
                         InputProcessor.IsFloating = false;
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
 
                     if (!InputProcessor.IsFloating)
                     {
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
                     break;
             }
