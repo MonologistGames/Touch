@@ -7,40 +7,40 @@ using UnityEngine.Serialization;
 namespace Touch.CustomGravity
 {
     /// <summary>
-    /// È«¾Ö×´Ì¬¹ÜÀí - ÖØÁ¦ÏµÍ³
+    /// å…¨å±€çŠ¶æ€ç®¡ç† - é‡åŠ›ç³»ç»Ÿ
     /// </summary>
     public class GlobalGravity : Singleton<GlobalGravity>
     {
-        #region Unity ²ÎÊı
-        [Tooltip("È«¾ÖÖØÁ¦ÏµÊı")]
+        #region Unity å‚æ•°
+        [Tooltip("å…¨å±€é‡åŠ›ç³»æ•°")]
         public float GravityFactor = 9.8f;
         #endregion
 
-        #region ÊÂ¼ş
+        #region äº‹ä»¶
         /// <summary>
-        /// ÖØÁ¦£¨·½Ïò£©¸ü¸ÄÊ±
+        /// é‡åŠ›ï¼ˆæ–¹å‘ï¼‰æ›´æ”¹æ—¶
         /// </summary>
         /// <remarks>
-        /// ÔÚ½ÇÉ«¿ØÖÆÆ÷ÖĞ½øĞĞ×¢²á
+        /// åœ¨è§’è‰²æ§åˆ¶å™¨ä¸­è¿›è¡Œæ³¨å†Œ
         /// </remarks>
         public event Action<Vector3> OnGravityChanged;
         #endregion
 
-        #region Ë½ÓĞ×Ö¶Î
-        private Vector3 _gravityDir = Vector3.down; // µ±Ç°ÖØÁ¦·½Ïò
+        #region ç§æœ‰å­—æ®µ
+        private Vector3 _gravityDir = Vector3.down; // å½“å‰é‡åŠ›æ–¹å‘
         #endregion
 
-        #region ÊôĞÔ
+        #region å±æ€§
         /// <summary>
-        /// »ñµÃÖØÁ¦·½Ïò
+        /// è·å¾—é‡åŠ›æ–¹å‘
         /// </summary>
         public Vector3 GravityDirection => _gravityDir;
         /// <summary>
-        /// »ñµÃÖØÁ¦£¨ÏµÊı³Ë·½Ïò£©
+        /// è·å¾—é‡åŠ›ï¼ˆç³»æ•°ä¹˜æ–¹å‘ï¼‰
         /// </summary>
         public Vector3 Gravity => GravityFactor * _gravityDir;
         #endregion
-
+        s
         public bool ChangeDirection(Vector3 direction)
         {
             if (_gravityDir == direction) return false;

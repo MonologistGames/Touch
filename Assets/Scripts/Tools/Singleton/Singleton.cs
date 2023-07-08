@@ -5,28 +5,14 @@ using UnityEngine;
 namespace Tools.Singleton
 {
     /// <summary>
-    /// µ¥ÀıÄ£Ê½¹¤¾ß
+    /// å•ä¾‹æ¨¡å¼å·¥å…·
     /// </summary>
     /// <remarks>
-    /// Ê¹ÓÃ·½·¨£ºÈÃĞèÒªµ¥ÀıµÄÀà¼Ì³Ğ¸ÃÀà
+    /// ä½¿ç”¨æ–¹æ³•ï¼šè®©éœ€è¦å•ä¾‹çš„ç±»ç»§æ‰¿è¯¥ç±»
     /// </remarks>
     public abstract class Singleton<T> where T : Singleton<T>, new()
     {
         private static T _instance;
         public static T Instance => _instance ??= new T();
-
-        /*
-        protected virtual void Awake()
-        {
-
-            if (_instance == null)
-            {
-                _instance = this as T;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-                Destroy(this.gameObject);
-        }
-        */
     }
 }
