@@ -20,7 +20,11 @@ namespace Touch.CameraController
             var distance=Mathf.Abs(transform.position.z-PlayerPos.position.z);
             var sizeY= 2*distance*Mathf.Tan(_camera.m_Lens.FieldOfView*Mathf.Deg2Rad/2);
             var a = Screen.width / Screen.height;
+<<<<<<< Updated upstream
             _boxCollider.size=new Vector3(sizeY*a*0.75f,sizeY*0.75f,8f);
+=======
+            _boxCollider.size=new Vector3(sizeY*a,sizeY,2f);
+>>>>>>> Stashed changes
             
             Debug.Log("distance:"+distance);
             Debug.Log("sizeY:"+sizeY);
