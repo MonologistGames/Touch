@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Touch.CustomGravity;
@@ -18,6 +17,7 @@ namespace Touch.PlayerController
         }
 
         public CharacterState State = CharacterState.Normal;
+        private Animator _animator;
 
         [Header("Gravity Change")] 
         public float VelocityRemainAfterChange = 0.5f;
@@ -28,9 +28,6 @@ namespace Touch.PlayerController
 
         [FormerlySerializedAs("VelocityLimited")] public float VelocityLimit = 6f;
         [Header("Gravity Change")] [Min(0f)] public float GravityFactorFactor = 1f;
-
-        public float SlowTimeLapse = 0.2f;
-        private float _currentSlowTimeLapse;
         public float SlowTimeScale = 0.2f;
         
         [Header("Floating")]
@@ -55,13 +52,8 @@ namespace Touch.PlayerController
         
         private Rigidbody _rigidbody;
 
-        private Material _material;
-
-        public Color GravityChangeColor;
-        public Color ChangeReadyColor;
-        public Color FloatingColor;
-
         public PlayerInputProcessor InputProcessor;
+        private static readonly int Turn = Animator.StringToHash("Turn");
 
         private void Awake()
         {
@@ -72,7 +64,7 @@ namespace Touch.PlayerController
         {
             _currentFloatingEnergy = FloatingEnergy;
             GlobalGravity.Instance.OnGravityChanged += ChangeGravityDirection;
-            _material = GetComponent<MeshRenderer>().material;
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -92,14 +84,11 @@ namespace Touch.PlayerController
                 case CharacterState.Normal:
                     if (!CanChangeGravity)
                         _currentChangeGravityColdTime -= Time.unscaledDeltaTime;
-                    else
-                        _material.color = ChangeReadyColor;
                     if (InputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
                         
                         // TODO: add floating effect
-                        _material.color = FloatingColor;
                     }
                     else
                     {
@@ -117,13 +106,11 @@ namespace Touch.PlayerController
                         _isExhausted = true;
                         InputProcessor.IsFloating = false;
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
 
                     if (!InputProcessor.IsFloating)
                     {
                         State = CharacterState.Normal;
-                        _material.color = Color.white;
                     }
                     break;
             }
@@ -158,7 +145,7 @@ namespace Touch.PlayerController
         private void UpdateVelocity(float velocityLimit)
         {
             var temp = _rigidbody.velocity;
-            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedDeltaTime);
+            temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedUnscaledDeltaTime);
             temp = temp.normalized *
                    Mathf.Min(temp.magnitude, velocityLimit);
             _rigidbody.velocity = temp;
@@ -173,15 +160,15 @@ namespace Touch.PlayerController
 
         private void ChangeGravityDirection(Vector3 gravity)
         {
-            StartCoroutine(GravityChangeEffect());
+            _animator.SetTrigger(Turn);
         }
 
         #region Gravity Change Effect
 
         public void BeginChange()
         {
-            _material.color = GravityChangeColor;
-            _rigidbody.velocity *= VelocityRemainAfterChange;
+            Debug.Log(_rigidbody.velocity);
+            _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
             
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
@@ -195,8 +182,6 @@ namespace Touch.PlayerController
             Time.fixedDeltaTime = 0.02f;
 
             State = CharacterState.Normal;
-
-            _material.color = Color.white;
         }
 
         public void SetRotationToVelocity()
@@ -205,12 +190,5 @@ namespace Touch.PlayerController
         }
 
         #endregion
-
-        private IEnumerator GravityChangeEffect()
-        {
-            BeginChange();
-            yield return new WaitForSecondsRealtime(SlowTimeLapse);
-            EndChange();
-        }
     }
 }
