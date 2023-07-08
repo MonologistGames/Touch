@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Touch.CustomGravity;
@@ -24,9 +25,8 @@ namespace Touch.PlayerController
         public CharacterState State = CharacterState.Normal;
         private Animator _animator;
 
-        [Header("Gravity Change")]
-        [Tooltip("当更改状态后角色残留速度")]
-        public float VelocityRemainAfterChange = 0.5f
+        [Header("Gravity Change")] [Tooltip("当更改状态后角色残留速度")]
+        public float VelocityRemainAfterChange = 0.5f;
         [Tooltip("更改重力的 CD")]
         public float ChangeGravityColdTime = 0.5f;
         [Tooltip("最大速度")]
@@ -269,7 +269,7 @@ namespace Touch.PlayerController
         private IEnumerator GravityChangeEffect()
         {
             BeginChange();
-            yield return new WaitForSecondsRealtime(SlowTimeLapse);
+            yield return new WaitForSecondsRealtime(_currentSlowTimeLapse);
             EndChange();
         }
         #endregion

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7463061197896893519}
-  - component: {fileID: 8172748678823722887}
   m_Layer: 0
   m_Name: GlobalGravity
   m_TagString: Untagged
@@ -32,16 +31,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8172748678823722887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1419107534578983975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9710f58e4a626423c8b6e3db7c55d1c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GravityFactor: 9.8

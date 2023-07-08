@@ -40,7 +40,6 @@ namespace Touch.CustomGravity
         /// </summary>
         public Vector3 Gravity => GravityFactor * _gravityDir;
         #endregion
-        s
         public bool ChangeDirection(Vector3 direction)
         {
             if (_gravityDir == direction) return false;
