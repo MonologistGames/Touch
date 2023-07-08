@@ -18,6 +18,7 @@ namespace Touch.PlayerController
         }
 
         public CharacterState State = CharacterState.Normal;
+        private Animator _animator;
 
         [Header("Gravity Change")] 
         public float VelocityRemainAfterChange = 0.5f;
@@ -62,6 +63,7 @@ namespace Touch.PlayerController
         public Color FloatingColor;
 
         public PlayerInputProcessor InputProcessor;
+        private static readonly int Turn = Animator.StringToHash("Turn");
 
         private void Awake()
         {
@@ -72,7 +74,7 @@ namespace Touch.PlayerController
         {
             _currentFloatingEnergy = FloatingEnergy;
             GlobalGravity.Instance.OnGravityChanged += ChangeGravityDirection;
-            _material = GetComponent<MeshRenderer>().material;
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -92,14 +94,11 @@ namespace Touch.PlayerController
                 case CharacterState.Normal:
                     if (!CanChangeGravity)
                         _currentChangeGravityColdTime -= Time.unscaledDeltaTime;
-                    else
-                        _material.color = ChangeReadyColor;
                     if (InputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
                         
                         // TODO: add floating effect
-                        _material.color = FloatingColor;
                     }
                     else
                     {
@@ -173,15 +172,15 @@ namespace Touch.PlayerController
 
         private void ChangeGravityDirection(Vector3 gravity)
         {
-            StartCoroutine(GravityChangeEffect());
+            _animator.SetTrigger(Turn);
         }
 
         #region Gravity Change Effect
 
         public void BeginChange()
         {
-            _material.color = GravityChangeColor;
-            _rigidbody.velocity *= VelocityRemainAfterChange;
+            Debug.Log(_rigidbody.velocity);
+            _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
             
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
@@ -195,13 +194,12 @@ namespace Touch.PlayerController
             Time.fixedDeltaTime = 0.02f;
 
             State = CharacterState.Normal;
-
-            _material.color = Color.white;
         }
 
         public void SetRotationToVelocity()
         {
             transform.up = _rigidbody.velocity.normalized;
+            Debug.Log(_rigidbody.velocity);
         }
 
         #endregion
