@@ -1,18 +1,69 @@
-using System;
 using UnityEngine;
-
 
 namespace Tools.Singleton
 {
-    /// <summary>
-    /// 单例模式工具
-    /// </summary>
-    /// <remarks>
-    /// 使用方法：让需要单例的类继承该类
-    /// </remarks>
-    public abstract class Singleton<T> where T : Singleton<T>, new()
+    public class Singleton<T> : MonoBehaviour where T : Singleton<T>, new()
     {
         private static T _instance;
-        public static T Instance => _instance ??= new T();
+
+        public static T Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    SetupInstance();
+                }
+
+                return _instance;
+            }
+        }
+
+        private static void SetupInstance()
+        {
+            _instance = FindObjectOfType<T>();
+
+            if (_instance != null) return;
+
+            var gameObj = new GameObject
+            {
+                name = typeof(T).Name
+            };
+
+            _instance = gameObj.AddComponent<T>();
+            _instance.SetPersistent(gameObj);
+        }
+
+        protected virtual void SetPersistent(GameObject gameObj)
+        {
+            
+        }
+
+        private void RemoveDuplicates()
+        {
+            if (_instance == null)
+            {
+                _instance = this as T;
+                //DontDestroyOnLoad(gameObject);
+                SetPersistent(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public virtual void Awake()
+        {
+            RemoveDuplicates();
+        }
+    }
+
+    public class SingletonPersistent<T> : Singleton<T> where T : Singleton<T>, new()
+    {
+        protected override void SetPersistent(GameObject gameObj)
+        {
+            DontDestroyOnLoad(gameObj);
+        }
     }
 }
