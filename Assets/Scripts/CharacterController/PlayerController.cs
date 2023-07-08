@@ -92,6 +92,8 @@ namespace Touch.PlayerController
                 case CharacterState.Normal:
                     if (!CanChangeGravity)
                         _currentChangeGravityColdTime -= Time.unscaledDeltaTime;
+                    else
+                        _material.color = ChangeReadyColor;
                     if (InputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
@@ -105,8 +107,9 @@ namespace Touch.PlayerController
                         if (Mathf.Approximately(CurrentFloatingEnergy, FloatingEnergy)) 
                             _isExhausted = false;
                     }
-                    if (CanChangeGravity) _material.color = ChangeReadyColor;
+                    
                     break;
+                
                 case CharacterState.Floating:
                     CurrentFloatingEnergy -= Time.deltaTime;
                     if (CurrentFloatingEnergy <= 0f)
