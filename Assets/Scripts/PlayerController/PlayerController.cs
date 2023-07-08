@@ -34,6 +34,8 @@ namespace Touch.PlayerController
         [Min(0f)] public float SlowTimeScale = 0.2f;
         
         private bool CanChangeGravity => _currentChangeGravityColdTime <= 0f;
+        
+        public float CurrentGChangeCd => _currentChangeGravityColdTime;
 
         #endregion
 
@@ -52,9 +54,11 @@ namespace Touch.PlayerController
             get => _currentFloatingEnergy;
             set
             {
-                _currentFloatingEnergy = value;
-                _currentFloatingEnergy = Mathf.Clamp(_currentFloatingEnergy, 0, FloatingEnergy);
-                OnFloatingEnergyChanged?.Invoke(_currentFloatingEnergy);
+                var v = Mathf.Clamp(value, 0, FloatingEnergy);
+                if (Mathf.Approximately(v, _currentFloatingEnergy)) 
+                    return;
+                OnFloatingEnergyChanged?.Invoke(_currentFloatingEnergy, _isExhausted);
+                _currentFloatingEnergy = v;
             }
         }
         
@@ -67,7 +71,7 @@ namespace Touch.PlayerController
 
         #endregion
 
-        public event Action<float> OnFloatingEnergyChanged;
+        public event Action<float, bool> OnFloatingEnergyChanged;
 
         private void Start()
         {
@@ -87,8 +91,7 @@ namespace Touch.PlayerController
 
             if (_inputProcessor.GravityDirection != Vector2.zero && CanChangeGravity)
             {
-                if (GlobalGravity.Instance.ChangeDirection(_inputProcessor.GravityDirection))
-                    _currentChangeGravityColdTime = ChangeGravityColdTime;
+                GlobalGravity.Instance.ChangeDirection(_inputProcessor.GravityDirection);
             }
 
             #endregion
@@ -99,7 +102,7 @@ namespace Touch.PlayerController
             {
                 case CharacterState.Normal:
                     if (!CanChangeGravity)
-                        _currentChangeGravityColdTime -= Time.unscaledDeltaTime;
+                        _currentChangeGravityColdTime -= Time.deltaTime;
                     if (_inputProcessor.IsFloating && CanFloat)
                     {
                         State = CharacterState.Floating;
@@ -192,6 +195,7 @@ namespace Touch.PlayerController
 
         public void BeginChange()
         {
+            _currentChangeGravityColdTime = ChangeGravityColdTime;
             _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
