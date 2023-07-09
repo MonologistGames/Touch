@@ -31,7 +31,10 @@ namespace Touch.PlayerController
         public float ChangeGravityColdTime = 0.5f;
         private float _currentChangeGravityColdTime;
         public float VelocityLimit = 6f;
+        public Vector3 Velocity => _rigidbody.velocity;
         [Min(0f)] public float SlowTimeScale = 0.2f;
+
+        private Vector3 _simulateVelocity;
         
         private bool CanChangeGravity => _currentChangeGravityColdTime <= 0f;
         
@@ -118,6 +121,8 @@ namespace Touch.PlayerController
                     break;
 
                 case CharacterState.Floating:
+                    if (!CanChangeGravity)
+                        _currentChangeGravityColdTime -= Time.deltaTime;
                     CurrentFloatingEnergy -= Time.deltaTime;
                     if (CurrentFloatingEnergy <= 0f)
                     {
@@ -154,7 +159,11 @@ namespace Touch.PlayerController
                     UpdateRotation();
                     break;
                 case CharacterState.ChangeGravity:
-                    UpdateVelocity(VelocityLimit);
+                    var temp = _simulateVelocity;
+                    temp += GlobalGravity.Instance.Gravity * (GravityFactorFactor * Time.fixedUnscaledDeltaTime);
+                    temp = temp.normalized *
+                           Mathf.Min(temp.magnitude, VelocityLimit);
+                    _simulateVelocity = temp;
                     break;
             }
 
@@ -200,6 +209,8 @@ namespace Touch.PlayerController
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
             State = CharacterState.ChangeGravity;
+            _simulateVelocity = _rigidbody.velocity;
+            _rigidbody.velocity = Vector3.zero;
         }
 
         public void EndChange()
@@ -207,6 +218,7 @@ namespace Touch.PlayerController
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
             State = CharacterState.Normal;
+            _rigidbody.velocity = _simulateVelocity;
         }
 
         #endregion

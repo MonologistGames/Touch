@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Tools.Singleton;
+using Touch.CustomGravity;
 
 namespace Touch.PlayerLife
 {
@@ -12,6 +13,8 @@ namespace Touch.PlayerLife
         public PlayerController.PlayerController PlayerController;
         [Header("Debug")]
         public Vector3 ReversePosition;
+
+        public Vector3 ReverseGravity;
         private Rigidbody _rigidbody;
 
         private void Start()
@@ -27,22 +30,24 @@ namespace Touch.PlayerLife
             Debug.Log("Player has died");
             StartCoroutine(ReversePositionCoroutine());
         }
-
+        
+        // Entering respawn point
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Flag")) return;
 
-            ReversePosition = transform.position;
-            
+            ReversePosition = other.transform.position;
+            ReverseGravity = GlobalGravity.Instance.GravityDirection;
         }
         
         private IEnumerator ReversePositionCoroutine()
         {
             PlayerController.enabled= false;
+            _rigidbody.velocity = Vector3.zero;
             yield return new WaitForSeconds(ReverseTime);
             transform.position = ReversePosition;
-            _rigidbody.velocity = Vector3.zero;
             PlayerController.enabled= true;
+            GlobalGravity.Instance.ResetGDirection(ReverseGravity);
         }
     }
 }

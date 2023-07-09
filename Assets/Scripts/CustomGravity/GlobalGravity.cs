@@ -21,5 +21,18 @@ namespace Touch.CustomGravity
             OnGravityChanged?.Invoke(Gravity);
             return true;
         }
+
+        /// <summary>
+        /// Reset global scene gravity direction without triggering
+        /// the OnGravityChanged event.
+        /// Caution: This method is only used for respawn.
+        /// </summary>
+        /// <param name="direction">Gravity Direction.</param>
+        /// <returns></returns>
+        public void ResetGDirection(Vector3 direction)
+        {
+            _gravityDir = direction;
+        }
+        
     }
 }
