@@ -284,7 +284,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: -14.28, y: 15.9800005, z: -2.13}
+      - m_Value: {x: -34.26, y: 23.83, z: -1.95}
         m_Name: SpawnPos
         m_Overridden: 1
       - m_Value: {x: 0, y: 0, z: 0}
@@ -293,7 +293,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 0, z: 0}
         m_Name: Player_angles
         m_Overridden: 1
-      - m_Value: {x: -14.28, y: 16.28, z: -2.63}
+      - m_Value: {x: -34.26, y: 24.13, z: -2.45}
         m_Name: Player_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 0.5}
@@ -497,8 +497,8 @@ GameObject:
   - component: {fileID: 3319164476011089084}
   - component: {fileID: 1397141802689680474}
   - component: {fileID: 2836831254752866543}
-  - component: {fileID: 8274326362326584440}
   - component: {fileID: 3388585849846083101}
+  - component: {fileID: 70796148298284554}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -762,22 +762,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8274326362326584440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9011961338041732546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e663d13aaf5f684486d7fe94721f1fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ReverseTime: 1
-  PlayerController: {fileID: 1397141802689680474}
-  ReversePosition: {x: 0, y: 0, z: 0}
-  ReverseGravity: {x: 0, y: 0, z: 0}
 --- !u!114 &3388585849846083101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,3 +793,19 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &70796148298284554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011961338041732546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e663d13aaf5f684486d7fe94721f1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReverseTime: 2
+  PlayerController: {fileID: 1397141802689680474}
+  ReversePosition: {x: 0, y: 0, z: 0}
+  ReverseGravity: {x: 0, y: 0, z: 0}
