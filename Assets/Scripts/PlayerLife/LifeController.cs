@@ -30,6 +30,8 @@ namespace Touch.PlayerLife
             if (!other.collider.CompareTag("Untagged"))return;
             
             Debug.Log("Player has died");
+            if (_isDead) return;
+            _isDead = true;
             StartCoroutine(ReversePositionCoroutine());
         }
         
@@ -37,9 +39,6 @@ namespace Touch.PlayerLife
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Flag")) return;
-            
-            if (_isDead) return;
-            _isDead = true;
             ReversePosition = other.transform.position;
             ReverseGravity = GlobalGravity.Instance.GravityDirection;
         }
@@ -53,7 +52,7 @@ namespace Touch.PlayerLife
             transform.position = ReversePosition;
             PlayerController.enabled= true;
             GlobalGravity.Instance.ResetGDirection(ReverseGravity);
-            _isDead = true;
+            _isDead = false;
         }
     }
 }
