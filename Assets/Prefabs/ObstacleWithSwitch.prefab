@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8350746732603608509}
   - component: {fileID: 5020051503650475037}
   - component: {fileID: 4842749615679863021}
-  - component: {fileID: 194215271451837333}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -28,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31759272227724350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.45, z: 3.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.67, y: -1.17, z: -5.51}
+  m_LocalScale: {x: 3.8672, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259422485246678822}
@@ -106,33 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &194215271451837333
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31759272227724350}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &385141779962701903
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +137,7 @@ Transform:
   - {fileID: 3609874771538923657}
   - {fileID: 3681212504300772471}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1714387792587883754
 MonoBehaviour:
@@ -182,7 +154,7 @@ MonoBehaviour:
   Switch: {fileID: 4705714414547422427}
   Obstacle: {fileID: 31759272227724350}
   SwitchAreaSize: {x: 2, y: 2, z: 2}
-  ObstacleTargetPosition: {x: 0, y: 5, z: 0}
+  ObstacleTargetPosition: {x: 5.67, y: -1.17, z: -5.51}
   EnterSpeed: 1
   ExitSpeed: 2
 --- !u!1 &4705714414547422427
@@ -211,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705714414547422427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: -5.77}
+  m_LocalPosition: {x: 7.17, y: 8.62, z: -5.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
