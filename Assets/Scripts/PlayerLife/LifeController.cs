@@ -21,6 +21,7 @@ namespace Touch.PlayerLife
         {
             _rigidbody = GetComponent<Rigidbody>();
             ReversePosition = transform.position;
+            ReverseGravity = GlobalGravity.Instance.GravityDirection;
         }
 
         private void OnCollisionEnter(Collision other)
