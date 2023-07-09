@@ -17,7 +17,7 @@ namespace Touch.Machines.TwoSideDoor
             if (other.gameObject != TheTriggerObject) return;
 
             var temp = DoorIndex == 1 ? MainScript.Side1Target : MainScript.Side2Target;
-            ThePairDoor.transform.DOMove(
+            ThePairDoor.transform.DOLocalMove(
                 temp,
                 MainScript.DoorOpenSpeed
             );

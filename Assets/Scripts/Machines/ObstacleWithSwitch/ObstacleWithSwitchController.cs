@@ -13,6 +13,7 @@ namespace Touch.Machines.ObstacleWithSwitch
         [Header("Basic Settings")]
         public Vector3 SwitchAreaSize;
         public Vector3 ObstacleTargetPosition;
+        public string TriggerTag;
         public float EnterSpeed;
         public float ExitSpeed;
         
