@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6432110654697649004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.19, z: -6.42}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,14 +93,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8956047545613590923}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3080209, w: 0.95137966}
+  m_LocalPosition: {x: 4.86, y: 4.02, z: 0.6700001}
+  m_LocalScale: {x: 6.7959, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8075375950712331169}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.88}
 --- !u!33 &6293688590524992739
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &9179761756519982494
 GameObject:
@@ -231,7 +231,7 @@ Transform:
   - {fileID: 7422910495807498358}
   - {fileID: 7902791531429770527}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4663373230453464973
 MonoBehaviour:
@@ -249,5 +249,5 @@ MonoBehaviour:
   Obstacle: {fileID: 8956047545613590923}
   GravityFactorFactor: 1
   VelocityLimit: 6
-  AreaSize: {x: 2, y: 2, z: 2}
+  AreaSize: {x: 20, y: 22, z: 4}
   IsActiveGravity: 0
