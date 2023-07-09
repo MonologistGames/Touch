@@ -9,6 +9,7 @@ namespace Touch.PlayerLife
 {
     public class LifeController : Singleton<LifeController>
     {
+        private bool _isDead = false;
         public float ReverseTime=1f;
         public PlayerController.PlayerController PlayerController;
         [Header("Debug")]
@@ -36,7 +37,9 @@ namespace Touch.PlayerLife
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Flag")) return;
-
+            
+            if (_isDead) return;
+            _isDead = true;
             ReversePosition = other.transform.position;
             ReverseGravity = GlobalGravity.Instance.GravityDirection;
         }
@@ -50,6 +53,7 @@ namespace Touch.PlayerLife
             transform.position = ReversePosition;
             PlayerController.enabled= true;
             GlobalGravity.Instance.ResetGDirection(ReverseGravity);
+            _isDead = true;
         }
     }
 }
