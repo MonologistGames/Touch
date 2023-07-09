@@ -225,6 +225,9 @@ namespace Touch.PlayerController
         public void DieEffect()
         {
             _animator.SetTrigger(Die);
+            State = CharacterState.Normal;
+            _currentFloatingEnergy = FloatingEnergy;
+            _currentChangeGravityColdTime = 0f;
         }
 
         #endregion
