@@ -205,20 +205,20 @@ namespace Touch.PlayerController
 
         public void BeginChange()
         {
+            State = CharacterState.ChangeGravity;
             _currentChangeGravityColdTime = ChangeGravityColdTime;
             _rigidbody.velocity = _rigidbody.velocity.normalized * VelocityRemainAfterChange;
             Time.timeScale = SlowTimeScale;
             Time.fixedDeltaTime *= SlowTimeScale;
-            State = CharacterState.ChangeGravity;
             _simulateVelocity = _rigidbody.velocity;
             _rigidbody.velocity = Vector3.zero;
         }
 
         public void EndChange()
         {
+            State = CharacterState.Normal;
             Time.timeScale = 1f;
             Time.fixedDeltaTime = 0.02f;
-            State = CharacterState.Normal;
             _rigidbody.velocity = _simulateVelocity;
         }
 
