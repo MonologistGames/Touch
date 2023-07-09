@@ -16,7 +16,7 @@ namespace Touch.Machines.ObstacleWithSwitch
             _obstacleWithSwitchController = 
                 GetComponentInParent<ObstacleWithSwitchController>();
             _obstacleTransform = _obstacleWithSwitchController.Obstacle.transform;
-            _obstacleOriginalPos = _obstacleTransform.position;
+            _obstacleOriginalPos = _obstacleTransform.localPosition;
         }
 
         private void OnTriggerEnter(Collider other)
