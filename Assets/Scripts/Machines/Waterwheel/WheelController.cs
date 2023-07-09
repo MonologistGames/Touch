@@ -39,7 +39,7 @@ namespace Touch.Machines.Waterwheel
 
             if (_rotateTime >= RotateTime)
             {
-                Door.transform.DOMove(DoorTargetPosition, DoorOpenSpeed);
+                Door.transform.DOLocalMove(DoorTargetPosition, DoorOpenSpeed);
                 Destroy(this);
             }
         }
