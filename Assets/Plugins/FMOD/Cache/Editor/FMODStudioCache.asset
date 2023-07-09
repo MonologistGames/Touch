@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/touch/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638244940522651111
+  lastModified: 638244939893599741
   FileSizes:
   - Name: Desktop
     Value: 1710
@@ -116,7 +116,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/touch/Build/Desktop/Audio.bank
   Name: Audio
   StudioPath: bank:/Audio
-  lastModified: 638244940522431192
+  lastModified: 638244939893542876
   FileSizes:
   - Name: Desktop
     Value: 3891712
@@ -210,7 +210,7 @@ MonoBehaviour:
   - {fileID: 7046543767987646844}
   StringsBanks:
   - {fileID: -7663877605128160897}
-  cacheTime: 638244940522651111
+  cacheTime: 638244939893599741
   cacheVersion: 131603
 --- !u!114 &63786839318343002
 MonoBehaviour:
@@ -360,7 +360,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/touch/Build/Desktop/MUSIC.bank
   Name: MUSIC
   StudioPath: bank:/MUSIC
-  lastModified: 638244940522601106
+  lastModified: 638244939893595489
   FileSizes:
   - Name: Desktop
     Value: 918656
@@ -539,7 +539,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/touch/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638244940522621086
+  lastModified: 638244939893597984
   FileSizes:
   - Name: Desktop
     Value: 1036
