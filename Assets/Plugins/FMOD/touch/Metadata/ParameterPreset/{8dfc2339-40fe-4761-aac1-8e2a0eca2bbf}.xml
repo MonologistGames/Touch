@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{8dfc2339-40fe-4761-aac1-8e2a0eca2bbf}">
+		<property name="name">
+			<value>parameter_waterwheel</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d9e0c53b-b0b6-4245-9cb8-77ffaf54e37f}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0bb5841d-28e7-46f9-80c3-b18948028de6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0bb5841d-28e7-46f9-80c3-b18948028de6}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

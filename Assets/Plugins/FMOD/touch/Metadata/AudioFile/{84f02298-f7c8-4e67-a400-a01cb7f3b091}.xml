@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{84f02298-f7c8-4e67-a400-a01cb7f3b091}">
+		<property name="assetPath">
+			<value>drip02.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.9038548752834468</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d9cf315-f437-4a9f-bbf2-876a80c90663}</destination>
+		</relationship>
+	</object>
+</objects>
