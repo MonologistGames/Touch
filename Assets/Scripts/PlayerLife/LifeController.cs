@@ -14,7 +14,8 @@ namespace Touch.PlayerLife
         public PlayerController.PlayerController PlayerController;
         [Header("Debug")]
         public Vector3 ReversePosition;
-
+        
+        public event Action OnPlayerDied; 
         public Vector3 ReverseGravity;
         private Rigidbody _rigidbody;
 
@@ -53,6 +54,7 @@ namespace Touch.PlayerLife
             PlayerController.enabled= true;
             GlobalGravity.Instance.ResetGDirection(ReverseGravity);
             _isDead = false;
+            OnPlayerDied?.Invoke();
         }
     }
 }
