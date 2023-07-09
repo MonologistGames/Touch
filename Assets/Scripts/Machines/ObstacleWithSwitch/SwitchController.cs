@@ -21,18 +21,18 @@ namespace Touch.Machines.ObstacleWithSwitch
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Player")) return;
+            if (!other.CompareTag(_obstacleWithSwitchController.TriggerTag)) return;
             
-            _obstacleTransform.DOMove(
+            _obstacleTransform.DOLocalMove(
                 _obstacleWithSwitchController.ObstacleTargetPosition, 
                 _obstacleWithSwitchController.EnterSpeed);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (!other.CompareTag("Player")) return;
+            if (!other.CompareTag(_obstacleWithSwitchController.TriggerTag)) return;
             
-            _obstacleTransform.DOMove(
+            _obstacleTransform.DOLocalMove(
                 _obstacleOriginalPos, 
                 _obstacleWithSwitchController.ExitSpeed);
         }
