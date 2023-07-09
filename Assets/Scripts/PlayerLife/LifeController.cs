@@ -43,6 +43,7 @@ namespace Touch.PlayerLife
         private IEnumerator ReversePositionCoroutine()
         {
             PlayerController.enabled= false;
+            PlayerController.DieEffect();
             _rigidbody.velocity = Vector3.zero;
             yield return new WaitForSeconds(ReverseTime);
             transform.position = ReversePosition;

@@ -71,6 +71,7 @@ namespace Touch.PlayerController
 
         private static readonly int Turn = Animator.StringToHash("Turn");
         private static readonly int Slow = Animator.StringToHash("Slow");
+        private static readonly int Die = Animator.StringToHash("Die");
 
         #endregion
 
@@ -219,6 +220,11 @@ namespace Touch.PlayerController
             Time.fixedDeltaTime = 0.02f;
             State = CharacterState.Normal;
             _rigidbody.velocity = _simulateVelocity;
+        }
+
+        public void DieEffect()
+        {
+            _animator.SetTrigger(Die);
         }
 
         #endregion

@@ -6,12 +6,10 @@ namespace Touch.PlayerController
 {
     public class PlayerSoundEffect : MonoBehaviour
     {
-        private PlayerController _playerController;
         public FMODUnity.StudioEventEmitter GravityChange;
 
         private void Start()
         {
-            _playerController = GetComponentInParent<PlayerController>();
             GlobalGravity.Instance.OnGravityChanged += PlayGravityChange;
         }
 
