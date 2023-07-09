@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Touch.CustomGravity;
-using UnityEngine.Serialization;
+using Touch.PlayerLife;
 
 namespace Touch.Machines.TheObjectController
 {
@@ -19,6 +19,7 @@ namespace Touch.Machines.TheObjectController
         [Header("Debug")] public bool IsActiveGravity;
 
         private Rigidbody _rigidbody;
+        private Vector3 _obstacleOriginPosition;
 
         private void Awake()
         {
@@ -29,7 +30,11 @@ namespace Touch.Machines.TheObjectController
             
             IsActiveGravity = false;
         }
-
+        private void Start()
+        {
+            _obstacleOriginPosition = Obstacle.transform.position;
+            LifeController.Instance.OnPlayerDied+= ResetPosition;
+        }
         private void OnDrawGizmos()
         {
             Gizmos.color = new Color(147 / 255f, 113 / 255f, 220 / 255f, 0.5f);
@@ -49,6 +54,10 @@ namespace Touch.Machines.TheObjectController
             temp = temp.normalized *
                    Mathf.Min(temp.magnitude, VelocityLimit);
             _rigidbody.velocity = temp;
+        }
+        private void ResetPosition()
+        {
+            Obstacle.transform.position = _obstacleOriginPosition;
         }
     }
 }
