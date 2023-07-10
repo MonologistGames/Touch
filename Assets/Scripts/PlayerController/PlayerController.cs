@@ -91,15 +91,6 @@ namespace Touch.PlayerController
 
         private void Update()
         {
-            #region Input
-
-            if (_inputProcessor.GravityDirection != Vector2.zero && CanChangeGravity)
-            {
-                GlobalGravity.Instance.ChangeDirection(_inputProcessor.GravityDirection);
-            }
-
-            #endregion
-
             #region Update Timer
 
             switch (State)
@@ -118,6 +109,12 @@ namespace Touch.PlayerController
                         if (Mathf.Approximately(CurrentFloatingEnergy, FloatingEnergy))
                             _isExhausted = false;
                     }
+                    
+                    if (_inputProcessor.GravityDirection != Vector2.zero && CanChangeGravity)
+                    {
+                        GlobalGravity.Instance.ChangeDirection(_inputProcessor.GravityDirection);
+                    }
+
 
                     break;
 
